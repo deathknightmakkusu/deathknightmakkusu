@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  fileBaseUrl: "https://192.168.50.89/files",
+  listingBaseUrl: "https://192.168.50.89/webapi/listing",
+  archiveBaseUrl: "https://192.168.50.89/webapi/archive"
 };
 
 /*

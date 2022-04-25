@@ -1,0 +1,27 @@
+.listing-panel {
+  width: 100%;
+  top: 0px;
+}
+
+.archive-panel {
+  background-color: grey;
+  position: sticky;
+  bottom: 0px;
+  height: 100px;
+  left: 0px;
+  right: 0px;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
+th {
+  text-align: left;
+  padding: 5px;
+}
+
+td {
+  padding: 5px;
+}

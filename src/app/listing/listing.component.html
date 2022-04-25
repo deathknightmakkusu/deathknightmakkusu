@@ -1,0 +1,44 @@
+<!-- left panel showing directory listing -->
+<div class="listing-panel">
+  <div *ngIf="listing">
+    <h1>Directory listing of {{listing.basePath}}</h1>
+    <table>
+      <tr>
+        <th><!-- Checkbox for choosing file --></th>
+        <th><!-- File/Folder icon  --></th>
+        <th>Name</th>
+        <th>Last modified</th>
+        <th>Size</th>
+      </tr>
+      <tr *ngFor="let file of listing.files">
+        <td><input *ngIf="file.name != '..'" type="checkbox" [(ngModel)]="file.selected" (change)="updateFileCount($event)"></td>
+
+        <td>
+          <img *ngIf="file.directory else notDirIcon" class="icon" src="/assets/img/folder.png">
+          <ng-template #notDirIcon>
+            <img class="icon" src="/assets/img/file.png">
+          </ng-template>
+        </td>
+
+        <td>
+          <a *ngIf="file.directory else notDirLink" [routerLink]="file.relativeUrl">{{file.name}}</a>
+          <ng-template #notDirLink>
+            <a [href]="getFileUrl(file)">{{file.name}}</a>
+          </ng-template>
+        </td>
+        
+        <td>{{file.lastModified | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+
+        <td><span *ngIf="!file.directory">{{file.size | fileSize}}</span></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- right panel showing button for generating zip archive for files selected -->
+<div class="archive-panel">
+
+   Number of files selected: {{fileSelectCount}}<br>
+  <br>
+  <button [disabled]="fileSelectCount == 0" (click)="getArchive()">Generate ZIP archive</button>
+</div>
